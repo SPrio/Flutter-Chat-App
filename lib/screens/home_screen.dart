@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/widgets/category_selector.dart';
 import 'package:flutter_chat_app/widgets/favourite_contacts.dart';
+import 'package:flutter_chat_app/widgets/recent_chats.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -44,7 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       topRight: Radius.circular(30.0),
                     )),
                 child: Column(children: [
-                  FavouriteContacts()
+                  FavouriteContacts(),
+                  RecentChats()
                 ])),
           )
         ]));
