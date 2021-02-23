@@ -13,11 +13,12 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   _buildMessage(Message message, bool isMe) {
-    return Container(
+    final Container msg = Container(
         margin: isMe
             ? EdgeInsets.only(top: 8.0, bottom: 8.0, left: 80.0)
-            : EdgeInsets.only(top: 8.0, bottom: 8.0, right: 80.0),
+            : EdgeInsets.only(top: 8.0, bottom: 8.0),
         padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+        width: MediaQuery.of(context).size.width * 0.75,
         decoration: BoxDecoration(
             color: isMe ? Theme.of(context).accentColor : Color(0xFFFFEFEE),
             borderRadius: isMe
@@ -43,6 +44,22 @@ class _ChatScreenState extends State<ChatScreen> {
                     fontWeight: FontWeight.w600)),
           ],
         ));
+    if (isMe) {
+      return msg;
+    }
+    return Row(
+      children: [
+        msg,
+        IconButton(
+            icon: message.isLiked
+                ? Icon(Icons.favorite)
+                : Icon(Icons.favorite_border),
+            iconSize: 30.0,
+            color:
+                message.isLiked ? Theme.of(context).primaryColor : Colors.black,
+            onPressed: () {})
+      ],
+    );
   }
 
   @override
